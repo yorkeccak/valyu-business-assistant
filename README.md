@@ -67,4 +67,7 @@ Type `exit` or `quit` to end the conversation.
 
 **Perfect for demonstrating to**: researchers, business students, professionals, and anyone interested in AI-powered research tools.
 
+## What it looks like
+![Demo Screenshot](assets/example.png)
+
 ---
