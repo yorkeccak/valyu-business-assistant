@@ -1,0 +1,17 @@
+{
+	"name": "valyu-business-ai-tool",
+	"version": "1.0.0",
+	"description": "AI tool for companies to query Wiley business textbooks and journals via Valyu API",
+	"main": "agent.js",
+	"type": "module",
+	"scripts": {
+		"start": "node agent.js"
+	},
+	"dependencies": {
+		"ai": "latest",
+		"valyu-js": "latest",
+		"zod": "latest",
+		"dotenv": "latest",
+		"@ai-sdk/anthropic": "latest"
+	}
+}
