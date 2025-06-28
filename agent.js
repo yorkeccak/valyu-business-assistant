@@ -83,6 +83,9 @@ async function processUserInput(userInput) {
     content: userInput
   });
 
+  // Track sources used in this response
+  let sourcesUsed = [];
+
   const result = await streamText({
     model: anthropic('claude-3-5-sonnet-latest'),
     system: `You are an AI business research assistant with access to authoritative Wiley sources.
@@ -129,12 +132,12 @@ Your value comes from accessing well-cited, authoritative Wiley sources.`,
         break;
       case 'tool-result':
         console.log(`\n\x1b[32m📊 TOOL RESULT:\x1b[0m`);
-        // Parse the tool result to show clean source information
+        // Parse the tool result to show clean source information and collect for references
         try {
           const resultText = part.result;
           if (resultText.includes('SOURCE 1:')) {
             console.log(`\x1b[32m📚 Found sources:\x1b[0m`);
-            // Extract and display sources cleanly
+            // Extract and display sources cleanly, and collect for references section
             const sources = resultText.match(/SOURCE \d+: ([^\n]+)/g);
             const citations = resultText.match(/CITATION: \[([^\]]+)\]\(([^)]+)\)/g);
             
@@ -147,6 +150,12 @@ Your value comes from accessing well-cited, authoritative Wiley sources.`,
                   const url = urlMatch ? urlMatch[1] : '';
                   console.log(`\x1b[32m   ${idx + 1}. ${title}\x1b[0m`);
                   console.log(`\x1b[90m      ${url}\x1b[0m`);
+                  
+                  // Collect source for references section
+                  sourcesUsed.push({
+                    title: title,
+                    url: url
+                  });
                 }
               });
             }
@@ -158,6 +167,15 @@ Your value comes from accessing well-cited, authoritative Wiley sources.`,
         console.log(`\n\x1b[36m🤖 AI RESPONSE:\x1b[0m`);
         break;
     }
+  }
+
+  // Add references section if sources were used
+  if (sourcesUsed.length > 0) {
+    console.log(`\n\n\x1b[93m📋 REFERENCES:\x1b[0m`);
+    sourcesUsed.forEach((source, idx) => {
+      console.log(`\x1b[93m${idx + 1}. ${source.title}\x1b[0m`);
+      console.log(`\x1b[37m   ${source.url}\x1b[0m`);
+    });
   }
 
   // Add assistant response to history

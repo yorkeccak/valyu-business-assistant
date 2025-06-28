@@ -52,9 +52,9 @@ Ask questions about:
 - Financial analysis and planning
 
 **Example questions to test:**
+- "How can pharma companies increase revenue?
 - "I am in HR, there are some coworkers that have recently started dating and it has been effecting their work. How should I handle this?"
 - "What are the key components of internal controls for financial reporting?"
-- "What are the key principles of effective budgeting?"
 
 Type `exit` or `quit` to end the conversation.
 
