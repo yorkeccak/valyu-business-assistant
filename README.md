@@ -16,7 +16,7 @@ An interactive AI assistant that demonstrates how to provide authoritative busin
 
 ### 1. Get API Keys
 
-- **Valyu API Key**: Sign up at [valyu.network](https://valyu.network) to get a free API key
+- **Valyu API Key**: Sign up at [valyu.network](https://platform.valyu.network) to get a free API key
 - **Anthropic API Key**: Get one from [console.anthropic.com](https://console.anthropic.com)
 
 ### 2. Install Dependencies
